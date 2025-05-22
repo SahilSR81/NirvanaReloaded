@@ -20,6 +20,9 @@ interface ContentCardProps {
 
 export const ContentCard = ({ section, index, onRefresh, isRefreshing }: ContentCardProps) => {
   const renderContent = () => {
+    if (!section.content) {
+      return <div className="text-muted-foreground italic">No content available.</div>;
+    }
     switch (section.type) {
       case "quote":
         return <QuoteCard content={section.content as Quote} />;
