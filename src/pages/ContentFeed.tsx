@@ -2,7 +2,6 @@ import { useState, useEffect, useCallback } from "react";
 import { MessageSquareQuote, BookOpen, Smile, Music2, Flower2, Book, Lightbulb } from "lucide-react";
 import PageNavigation from "@/components/shared/PageNavigation";
 import { ContentCard } from "@/components/content/ContentCard";
-import { mockData } from "@/data/mockContent";
 import { ContentSection, Quote, Story, Joke, YogaAsana, BhagavadGitaVerse, Music, LifestyleTip } from "@/types/content";
 import Navbar from "@/components/shared/Navbar";
 import { getFunctions, httpsCallable } from "firebase/functions";
@@ -13,6 +12,7 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import { mockData } from "@/data/mockContent";
 
 const ContentFeed = () => {
   const [refreshStates, setRefreshStates] = useState<{ [key: string]: boolean }>({});
@@ -21,43 +21,43 @@ const ContentFeed = () => {
       title: "Daily Quote",
       icon: MessageSquareQuote,
       type: "quote",
-      content: mockData.quotes[Math.floor(Math.random() * mockData.quotes.length)]
+      content: null
     },
     {
       title: "Inspiring Story",
       icon: BookOpen,
       type: "story",
-      content: mockData.stories[Math.floor(Math.random() * mockData.stories.length)]
+      content: null
     },
     {
       title: "Mood Lifter",
       icon: Smile,
       type: "joke",
-      content: mockData.jokes[Math.floor(Math.random() * mockData.jokes.length)]
+      content: null
     },
     {
       title: "Peaceful Music",
       icon: Music2,
       type: "music",
-      content: mockData.music[Math.floor(Math.random() * mockData.music.length)]
+      content: null
     },
     {
       title: "Yoga Practice",
       icon: Flower2,
       type: "yoga",
-      content: mockData.yogaPoses[Math.floor(Math.random() * mockData.yogaPoses.length)] as YogaAsana
+      content: null
     },
     {
       title: "Daily Wisdom",
       icon: Book,
       type: "wisdom",
-      content: mockData.wisdom[Math.floor(Math.random() * mockData.wisdom.length)]
+      content: null
     },
     {
       title: "Lifestyle Tip",
       icon: Lightbulb,
       type: "lifestyle",
-      content: mockData.lifestyle[Math.floor(Math.random() * mockData.lifestyle.length)]
+      content: null
     }
   ]);
 
@@ -79,6 +79,36 @@ const ContentFeed = () => {
     };
     fetchSuggestions();
   }, [user]);
+
+  // Fetch all content from AI on mount
+  useEffect(() => {
+    const fetchAllContent = async () => {
+      const functions = getFunctions();
+      try {
+        const [quoteRes, storyRes, jokeRes, musicRes, yogaRes, wisdomRes, lifestyleRes] = await Promise.all([
+          httpsCallable(functions, "adminGenerateQuote")({ n: 1 }),
+          httpsCallable(functions, "adminGenerateStory")({ n: 1 }),
+          httpsCallable(functions, "adminGenerateJoke")({ n: 1 }),
+          httpsCallable(functions, "adminGenerateMusic")({ n: 1 }),
+          httpsCallable(functions, "adminGenerateYoga")({ n: 1 }),
+          httpsCallable(functions, "adminGenerateWisdom")({ n: 1 }),
+          httpsCallable(functions, "adminGenerateLifestyle")({ n: 1 })
+        ]);
+        setSections([
+          { title: "Daily Quote", icon: MessageSquareQuote, type: "quote", content: quoteRes.data[0] },
+          { title: "Inspiring Story", icon: BookOpen, type: "story", content: storyRes.data[0] },
+          { title: "Mood Lifter", icon: Smile, type: "joke", content: jokeRes.data[0] },
+          { title: "Peaceful Music", icon: Music2, type: "music", content: musicRes.data[0] },
+          { title: "Yoga Practice", icon: Flower2, type: "yoga", content: yogaRes.data[0] },
+          { title: "Daily Wisdom", icon: Book, type: "wisdom", content: wisdomRes.data[0] },
+          { title: "Lifestyle Tip", icon: Lightbulb, type: "lifestyle", content: lifestyleRes.data[0] }
+        ]);
+      } catch (err) {
+        // Optionally handle error
+      }
+    };
+    fetchAllContent();
+  }, []);
 
   // Generate new suggestion
   const handleGenerateTip = async () => {
