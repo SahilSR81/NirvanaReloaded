@@ -16,6 +16,7 @@ import { DashboardCharts } from "@/components/dashboard/DashboardCharts";
 import { startOfWeek, endOfWeek, isWithinInterval } from "date-fns";
 import { format } from "date-fns";
 import { motion } from "framer-motion";
+import { ResponsiveContainer, LineChart, CartesianGrid, XAxis, YAxis, Tooltip, Line } from "recharts";
 
 const ACTIVITY_EMOJIS: { [key: string]: string } = {
   exercise: "💪",
@@ -227,6 +228,20 @@ const Dashboard = () => {
                   moodHistory={todayEntries}
                   weeklyData={aggregatedData}
                 />
+
+                {/* Mood History Visualization */}
+                <div className="mt-12">
+                  <h2 className="text-2xl font-bold mb-4 gradient-text">Mood History</h2>
+                  <ResponsiveContainer width="100%" height={300}>
+                    <LineChart data={moodHistory} margin={{ top: 5, right: 20, left: 10, bottom: 5 }}>
+                      <CartesianGrid strokeDasharray="3 3" />
+                      <XAxis dataKey="timestamp" tickFormatter={str => new Date(str).toLocaleDateString()} />
+                      <YAxis />
+                      <Tooltip labelFormatter={str => new Date(str).toLocaleString()} />
+                      <Line type="monotone" dataKey="score" stroke="#8884d8" dot={false} />
+                    </LineChart>
+                  </ResponsiveContainer>
+                </div>
 
                 <div className="flex flex-col md:flex-row justify-between gap-4 mt-4">
                   <Button 
