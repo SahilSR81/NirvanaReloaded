@@ -21,7 +21,7 @@ const Index = () => {
               </CardTitle>
               <p className="text-lg md:text-xl text-muted-foreground text-center font-medium">
                 Your AI-powered mental wellness companion
-              </p>
+            </p>
             </CardHeader>
             <CardContent className="space-y-8">
               <ul className="space-y-2 text-base md:text-lg text-center text-muted-foreground">

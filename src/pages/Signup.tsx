@@ -48,7 +48,7 @@ const Signup = () => {
       setTimeout(() => navigate("/mood-tracker"), 1200);
     } catch (e: any) {
       setError(e.message || "Google sign-in failed");
-    }
+      }
     setGoogleLoading(false);
   };
 
@@ -70,18 +70,18 @@ const Signup = () => {
             </CardHeader>
             <CardContent>
               <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
-                <div className="space-y-2">
+          <div className="space-y-2">
                   <Input type="text" placeholder="Full Name" {...register("name", { required: true })} />
                   {errors.name && <span className="text-destructive text-xs">Name is required</span>}
-                </div>
-                <div className="space-y-2">
+          </div>
+          <div className="space-y-2">
                   <Input type="email" placeholder="Email" {...register("email", { required: true })} />
                   {errors.email && <span className="text-destructive text-xs">Email is required</span>}
-                </div>
-                <div className="space-y-2">
+          </div>
+          <div className="space-y-2">
                   <Input type="password" placeholder="Password" {...register("password", { required: true, minLength: 6 })} />
                   {errors.password && <span className="text-destructive text-xs">Password must be at least 6 characters</span>}
-                </div>
+            </div>
                 <motion.div
                   initial={{ scale: 0.95, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
@@ -95,7 +95,7 @@ const Signup = () => {
                   <div className="flex-grow border-t border-gray-300 dark:border-gray-700" />
                   <span className="mx-3 text-muted-foreground">or</span>
                   <div className="flex-grow border-t border-gray-300 dark:border-gray-700" />
-                </div>
+          </div>
                 <Button
                   type="button"
                   variant="outline"
@@ -105,7 +105,7 @@ const Signup = () => {
                 >
                   <FcGoogle className="w-5 h-5" />
                   {googleLoading ? "Signing in..." : "Sign in with Google"}
-                </Button>
+          </Button>
                 {error && (
                   <Alert variant="destructive" className="mt-4">
                     <AlertTitle>Signup Failed</AlertTitle>
@@ -118,11 +118,11 @@ const Signup = () => {
                     <AlertDescription>Redirecting to mood tracker...</AlertDescription>
                   </Alert>
                 )}
-              </form>
+        </form>
               <div className="mt-6 text-center text-muted-foreground">
                 Already have an account?{' '}
                 <Button variant="link" className="p-0 h-auto text-base" onClick={() => navigate("/login")}>Log in</Button>
-              </div>
+        </div>
             </CardContent>
           </Card>
         </motion.div>

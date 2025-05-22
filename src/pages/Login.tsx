@@ -40,7 +40,7 @@ const Login = () => {
       setTimeout(() => navigate("/dashboard"), 1200);
     } catch (e: any) {
       setError(e.message || "Google sign-in failed");
-    }
+      }
     setGoogleLoading(false);
   };
 
@@ -62,14 +62,14 @@ const Login = () => {
             </CardHeader>
             <CardContent>
               <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
-                <div className="space-y-2">
+          <div className="space-y-2">
                   <Input type="email" placeholder="Email" {...register("email", { required: true })} />
                   {errors.email && <span className="text-destructive text-xs">Email is required</span>}
-                </div>
-                <div className="space-y-2">
+          </div>
+          <div className="space-y-2">
                   <Input type="password" placeholder="Password" {...register("password", { required: true })} />
                   {errors.password && <span className="text-destructive text-xs">Password is required</span>}
-                </div>
+            </div>
                 <motion.div
                   initial={{ scale: 0.95, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
@@ -83,7 +83,7 @@ const Login = () => {
                   <div className="flex-grow border-t border-gray-300 dark:border-gray-700" />
                   <span className="mx-3 text-muted-foreground">or</span>
                   <div className="flex-grow border-t border-gray-300 dark:border-gray-700" />
-                </div>
+          </div>
                 <Button
                   type="button"
                   variant="outline"
@@ -93,7 +93,7 @@ const Login = () => {
                 >
                   <FcGoogle className="w-5 h-5" />
                   {googleLoading ? "Signing in..." : "Sign in with Google"}
-                </Button>
+          </Button>
                 {error && (
                   <Alert variant="destructive" className="mt-4">
                     <AlertTitle>Login Failed</AlertTitle>
@@ -106,11 +106,11 @@ const Login = () => {
                     <AlertDescription>Redirecting to dashboard...</AlertDescription>
                   </Alert>
                 )}
-              </form>
+        </form>
               <div className="mt-6 text-center text-muted-foreground">
                 New to Nirvana?{' '}
                 <Button variant="link" className="p-0 h-auto text-base" onClick={() => navigate("/signup")}>Sign up</Button>
-              </div>
+        </div>
             </CardContent>
           </Card>
         </motion.div>

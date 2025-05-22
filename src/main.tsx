@@ -9,7 +9,7 @@ const root = createRoot(document.getElementById('root')!);
 root.render(
   <ThemeProvider>
     <NotificationProvider>
-      <App />
+    <App />
     </NotificationProvider>
   </ThemeProvider>
 );

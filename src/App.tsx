@@ -91,48 +91,48 @@ const AppRoutes = () => {
         className="min-h-screen bg-background"
       >
         <Routes location={location}>
-          {/* Public Routes */}
-          <Route path="/" element={<Index />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/about-us" element={<AboutUs />} />
+              {/* Public Routes */}
+              <Route path="/" element={<Index />} />
+              <Route path="/signup" element={<Signup />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/about-us" element={<AboutUs />} />
 
-          {/* Protected Routes */}
-          <Route path="/personal-details" element={
-            <ProtectedRoute>
-              <PersonalDetails />
-            </ProtectedRoute>
-          } />
-          <Route path="/welcome" element={
-            <ProtectedRoute>
-              <Welcome />
-            </ProtectedRoute>
-          } />
-          <Route path="/mood-tracker" element={
-            <ProtectedRoute>
-              <MoodTracker />
-            </ProtectedRoute>
-          } />
-          <Route path="/dashboard" element={
-            <ProtectedRoute>
-              <Dashboard />
-            </ProtectedRoute>
-          } />
-          <Route path="/content-feed" element={
-            <ProtectedRoute>
-              <ContentFeed />
-            </ProtectedRoute>
-          } />
-          <Route path="/personalized-help" element={
-            <ProtectedRoute>
-              <PersonalizedHelp />
-            </ProtectedRoute>
-          } />
-          <Route path="/profile" element={
-            <ProtectedRoute>
-              <Profile />
-            </ProtectedRoute>
-          } />
+              {/* Protected Routes */}
+              <Route path="/personal-details" element={
+                <ProtectedRoute>
+                  <PersonalDetails />
+                </ProtectedRoute>
+              } />
+              <Route path="/welcome" element={
+                <ProtectedRoute>
+                  <Welcome />
+                </ProtectedRoute>
+              } />
+              <Route path="/mood-tracker" element={
+                <ProtectedRoute>
+                  <MoodTracker />
+                </ProtectedRoute>
+              } />
+              <Route path="/dashboard" element={
+                <ProtectedRoute>
+                  <Dashboard />
+                </ProtectedRoute>
+              } />
+              <Route path="/content-feed" element={
+                <ProtectedRoute>
+                  <ContentFeed />
+                </ProtectedRoute>
+              } />
+              <Route path="/personalized-help" element={
+                <ProtectedRoute>
+                  <PersonalizedHelp />
+                </ProtectedRoute>
+              } />
+              <Route path="/profile" element={
+                <ProtectedRoute>
+                  <Profile />
+                </ProtectedRoute>
+              } />
           <Route path="/reports" element={
             <ProtectedRoute>
               <Reports />
@@ -153,7 +153,7 @@ const AppRoutes = () => {
               <AdminDashboard />
             </ProtectedRoute>
           } />
-        </Routes>
+            </Routes>
       </motion.div>
     </AnimatePresence>
   );

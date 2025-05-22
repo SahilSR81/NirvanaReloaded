@@ -48,8 +48,8 @@ const PersonalDetails = () => {
                 Personal Details
               </CardTitle>
               <p className="text-muted-foreground text-center">Tell us about yourself to personalize your experience</p>
-            </CardHeader>
-            <CardContent>
+        </CardHeader>
+        <CardContent>
               <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
                 <div className="space-y-2">
                   <Input type="text" placeholder="Full Name" {...register("name", { required: true })} />
@@ -99,8 +99,8 @@ const PersonalDetails = () => {
                   </Alert>
                 )}
               </form>
-            </CardContent>
-          </Card>
+        </CardContent>
+      </Card>
         </motion.div>
       </div>
     </div>

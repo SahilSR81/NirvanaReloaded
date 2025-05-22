@@ -131,7 +131,7 @@ const MoodTracker = () => {
               <CardTitle className="gradient-text">Detected Mood & Score</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="flex flex-col items-center gap-2">
+                  <div className="flex flex-col items-center gap-2">
                 <div className="text-xl font-bold gradient-text">
                   {detectedMood ? detectedMood.charAt(0).toUpperCase() + detectedMood.slice(1) : '...'}
                 </div>
@@ -141,17 +141,17 @@ const MoodTracker = () => {
                 <div className="text-lg font-semibold">
                   Mood Score: {detectedMood ? getMoodScore(detectedMood, detectedConfidence) : '--'}
                 </div>
-              </div>
+                  </div>
             </CardContent>
           </Card>
-
+          
           <WeatherSection
             selectedWeather={selectedWeather}
             weatherRating={weatherRating}
             onWeatherSelect={setSelectedWeather}
             onWeatherRatingChange={setWeatherRating}
           />
-
+          
           <Card className="glass-card border-0">
             <CardHeader>
               <CardTitle className="gradient-text">What activities did you do today?</CardTitle>
